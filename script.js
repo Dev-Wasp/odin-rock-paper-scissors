@@ -22,5 +22,5 @@ function getComputerChoice() {
 function getHumanChoice() {
   const humanChoice = prompt("Enter your choice (\"rock\", \"paper\", or \"scissors\": ");
 
-  return humanChoice;
+  return humanChoice.toLowerCase();
 }
