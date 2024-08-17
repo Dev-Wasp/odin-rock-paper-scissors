@@ -15,3 +15,10 @@ function getComputerChoice() {
 
   return computerChoice;
 }
+
+function getHumanChoice() {
+  const humanChoice = prompt("Enter your choice (\"rock\", \"paper\", or \"scissors\": ");
+
+  return humanChoice;
+}
+
