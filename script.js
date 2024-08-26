@@ -1,5 +1,6 @@
 const btns = document.querySelectorAll("button");
 const display = document.querySelector("#display");
+const score = document.querySelector("#score");
 let humanScore = 0;
 let computerScore = 0;
 
@@ -12,15 +13,23 @@ function clickHandler(e) {
   playRound(humanChoice, computerChoice);
 }
 
-function playGame() {
-  if (humanScore > computerScore) {
-    console.log(`You win the game with the score of ${humanScore}:${computerScore}`);
-  }
-  else if (humanScore < computerScore) {
-    console.log(`You lost the game. The score is ${humanScore}:${computerScore}`);
-  }
-  else {
-    console.log(`It is a draw. The score is ${humanScore}:${computerScore}`);
+function changeScore() {
+  score.textContent = `Score: ${humanScore} : ${computerScore}`;
+
+  checkForWin();
+}
+
+function checkForWin() {
+  if (humanScore === 5 || computerScore === 5) {
+    btns.forEach(btn => {
+      btn.removeEventListener("click", clickHandler);
+      btn.remove();
+    })
+    display.remove();
+
+    const result = document.createElement('p');
+    result.textContent = (humanScore === 5) ? "You won!" : "You lost.";
+    document.body.appendChild(result);
   }
 }
 
@@ -62,6 +71,8 @@ function playRound(humanChoice, computerChoice) {
   }
 
   display.textContent = message;
+
+  changeScore();
 }
 
 function getComputerChoice() {
